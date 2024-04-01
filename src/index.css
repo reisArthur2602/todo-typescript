@@ -10,11 +10,12 @@
 }
 
 body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-family: 'Poppins', sans-serif;
-  min-height: 100vh;
   background-color: #f8fafc;
   color: #020617;
+  font-size: 0.875rem;
+}
+
+button {
+  cursor: pointer;
 }
