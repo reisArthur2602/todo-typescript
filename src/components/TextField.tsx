@@ -1,11 +1,16 @@
+import { InputHTMLAttributes } from "react";
 
-export const TextField = () => {
+type TextFieldProps = InputHTMLAttributes<HTMLInputElement>
+
+export const TextField = ({ type, placeholder, value, onChange } : TextFieldProps ) => {
   return (
     <input
-    type="text"
-    placeholder="Criar nova Tarefa"
-    required
-    className="w-full outline-none bg-slate-200 p-3 rounded-xl w-full"
-  />
-  )
-}
+      type={type}
+      placeholder={placeholder}
+      required
+      onChange={onChange}
+      value={value}
+      className="w-full outline-none bg-slate-200 p-3 rounded-xl"
+    />
+  );
+};
