@@ -3,7 +3,7 @@ import { Button } from './components/Button';
 import { Task } from './components/Task';
 import { TextField } from './components/TextField';
 
-interface ITask {
+export interface ITask {
   id: string;
   title: string;
   done: boolean;
@@ -28,22 +28,23 @@ export const Todo = () => {
 
   const handleCreateTask = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setTaskList([
-      ...tasklist,
-      {
-        id: generateRandomId(10),
-        title: task,
-        done: false,
-      },
-    ]);
+
+    const newTask: ITask = {
+      id: generateRandomId(5),
+      title: task,
+      done: false,
+    };
+
+    setTaskList([...tasklist, newTask]);
   };
 
-  const handleToggleChecked = (task: ITask) => {
+  const handleToggleChecked = (id: string) => {
     setTaskList(
       tasklist.map((item) =>
-        item.id === task.id ? { ...item, done: !item.done } : task
+        item.id === id ? { ...item, done: !item.done } : item
       )
     );
+    console.log(tasklist);
   };
 
   return (
@@ -64,7 +65,13 @@ export const Todo = () => {
 
         <ul className="flex flex-col gap-3">
           {tasklist?.map((data) => (
-            <Task id={data.id} title={data.title} done={data.done} onClick={()=>handleToggleChecked(data)} />
+            <Task
+              key={data.id}
+              id={data.id}
+              title={data.title}
+              done={data.done}
+              handleToggleChecked={() => handleToggleChecked(data.id)}
+            />
           ))}
         </ul>
       </div>
