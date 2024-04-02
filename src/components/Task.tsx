@@ -9,7 +9,7 @@ interface TaskProps extends ITask {
 
 export const Task = ({ done, title, handleToggleChecked ,handleDeleteTask}: TaskProps) => {
   return (
-    <li className="w-full bg-white p-3 rounded-lg hover:animate-bounce  flex items-center justify-between">
+    <li className="w-full bg-white p-3 rounded-lg hover:animate-bounce flex items-center justify-between">
       <div className="flex gap-4 items-center">
         <button onClick={handleToggleChecked}>{done ? <SquareCheck /> : <Square />}</button>
         <p className="flex-1 line-clamp-2">{title}</p>

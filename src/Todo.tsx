@@ -50,7 +50,7 @@ export const Todo = () => {
     const filterTask = tasklist.filter((taskItem) => taskItem.id !== id);
     setTaskList(filterTask);
   };
-
+  console.log(tasklist.length);
   return (
     <main className="w-full h-screen flex items-center justify-center">
       <div className="max-w-[31.875rem] w-full flex flex-col gap-[1.25rem]">
@@ -68,16 +68,20 @@ export const Todo = () => {
         </form>
 
         <ul className="flex flex-col gap-3">
-          {tasklist ? tasklist?.map((data) => (
-            <Task
-              key={data.id}
-              id={data.id}
-              title={data.title}
-              done={data.done}
-              handleToggleChecked={() => handleToggleChecked(data.id)}
-              handleDeleteTask={() => handleDeleteTask(data.id)}
-            />
-          )) : <p>Sua lista de tarefas esta vazia</p> }
+          {tasklist.length === 0 ? (
+            <p className='w-full text-center text-slate-400 '>Sua lista de tarefas esta vazia...</p>
+          ) : (
+            tasklist.map((data) => (
+              <Task
+                key={data.id}
+                id={data.id}
+                title={data.title}
+                done={data.done}
+                handleToggleChecked={() => handleToggleChecked(data.id)}
+                handleDeleteTask={() => handleDeleteTask(data.id)}
+              />
+            ))
+          )}
         </ul>
       </div>
     </main>
